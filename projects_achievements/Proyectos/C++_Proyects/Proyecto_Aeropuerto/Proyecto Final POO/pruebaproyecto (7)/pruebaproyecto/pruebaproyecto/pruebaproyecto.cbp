@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="pruebaproyecto" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin/Debug/pruebaproyecto" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+				</Compiler>
+			</Target>
+			<Target title="Release">
+				<Option output="bin/Release/pruebaproyecto" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+			<Add option="-fexceptions" />
+		</Compiler>
+		<Unit filename="Aeropuerto.cpp" />
+		<Unit filename="Aeropuerto.h" />
+		<Unit filename="BuscadorDeVuelos.cpp" />
+		<Unit filename="BuscadorDeVuelos.h" />
+		<Unit filename="Cliente.cpp" />
+		<Unit filename="Cliente.h" />
+		<Unit filename="ClienteEmpleado.cpp" />
+		<Unit filename="ClienteEmpleado.h" />
+		<Unit filename="Empleado.cpp" />
+		<Unit filename="Empleado.h" />
+		<Unit filename="Equipaje.cpp" />
+		<Unit filename="Equipaje.h" />
+		<Unit filename="Pasajero.cpp" />
+		<Unit filename="Pasajero.h" />
+		<Unit filename="Persona.cpp" />
+		<Unit filename="Persona.h" />
+		<Unit filename="RegistrodeTripulacion.cpp" />
+		<Unit filename="RegistrodeTripulacion.h" />
+		<Unit filename="Reserva.cpp" />
+		<Unit filename="Reserva.h" />
+		<Unit filename="SistemaComentarios.cpp" />
+		<Unit filename="SistemaComentarios.h" />
+		<Unit filename="Tripulacion.cpp" />
+		<Unit filename="Tripulacion.h" />
+		<Unit filename="Vuelo.cpp" />
+		<Unit filename="Vuelo.h" />
+		<Unit filename="cliente1.cpp" />
+		<Unit filename="cliente1.h" />
+		<Unit filename="imprimible.h" />
+		<Unit filename="main.cpp" />
+		<Extensions>
+			<lib_finder disable_auto="1" />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

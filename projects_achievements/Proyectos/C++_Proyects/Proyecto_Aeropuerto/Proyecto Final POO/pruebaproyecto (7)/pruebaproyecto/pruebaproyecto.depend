@@ -1,0 +1,178 @@
+# depslib dependency file v1.0
+1686628211 source:c:\users\jpabl\desktop\tec\2do semestre\programación orientada a objetos\pruebaproyecto\aeropuerto.cpp
+	"Aeropuerto.h"
+
+1686628211 c:\users\jpabl\desktop\tec\2do semestre\programación orientada a objetos\pruebaproyecto\aeropuerto.h
+	<string>
+
+1686627862 source:c:\users\jpabl\desktop\tec\2do semestre\programación orientada a objetos\pruebaproyecto\pasajero.cpp
+	"Pasajero.h"
+	<iostream>
+
+1686628211 c:\users\jpabl\desktop\tec\2do semestre\programación orientada a objetos\pruebaproyecto\pasajero.h
+	"Persona.h"
+
+1686628211 c:\users\jpabl\desktop\tec\2do semestre\programación orientada a objetos\pruebaproyecto\persona.h
+	<string>
+
+1686627862 source:c:\users\jpabl\desktop\tec\2do semestre\programación orientada a objetos\pruebaproyecto\persona.cpp
+	"Persona.h"
+
+1686627862 source:c:\users\jpabl\desktop\tec\2do semestre\programación orientada a objetos\pruebaproyecto\tripulacion.cpp
+	"Tripulacion.h"
+	<iostream>
+
+1686628211 c:\users\jpabl\desktop\tec\2do semestre\programación orientada a objetos\pruebaproyecto\tripulacion.h
+	"Persona.h"
+
+1686628211 source:c:\users\jpabl\desktop\tec\2do semestre\programación orientada a objetos\pruebaproyecto\main.cpp
+	<iostream>
+	<string>
+	"Pasajero.h"
+	"Vuelo.h"
+	"Reserva.h"
+
+1686628264 c:\users\jpabl\desktop\tec\2do semestre\programación orientada a objetos\pruebaproyecto\vuelo.h
+	<string>
+	<iostream>
+
+1686628211 c:\users\jpabl\desktop\tec\2do semestre\programación orientada a objetos\pruebaproyecto\reserva.h
+	<string>
+	"Vuelo.h"
+	"Pasajero.h"
+
+1686627974 source:c:\users\jpabl\desktop\tec\2do semestre\programación orientada a objetos\pruebaproyecto\reserva.cpp
+	"Reserva.h"
+
+1686884451 source:c:\users\ronys\documents\c++\pruebaproyecto\pruebaproyecto\aeropuerto.cpp
+	"Aeropuerto.h"
+
+1686884467 c:\users\ronys\documents\c++\pruebaproyecto\pruebaproyecto\aeropuerto.h
+	<string>
+	<iostream>
+
+1686946201 source:c:\users\ronys\documents\c++\pruebaproyecto\pruebaproyecto\main.cpp
+	<iostream>
+	<vector>
+	<string>
+	"Pasajero.h"
+	"Vuelo.h"
+	"Reserva.h"
+	"Tripulacion.h"
+	"Aeropuerto.h"
+	"RegistrodeTripulacion.h"
+	"SistemaComentarios.h"
+	"BuscadorDeVuelos.h"
+
+1686886671 c:\users\ronys\documents\c++\pruebaproyecto\pruebaproyecto\pasajero.h
+	"Persona.h"
+	"imprimible.h"
+	<string>
+	"Equipaje.h"
+
+1686875813 c:\users\ronys\documents\c++\pruebaproyecto\pruebaproyecto\persona.h
+	<string>
+	"imprimible.h"
+	<iostream>
+
+1686887542 c:\users\ronys\documents\c++\pruebaproyecto\pruebaproyecto\vuelo.h
+	<string>
+	<iostream>
+	"Equipaje.h"
+
+1686873634 c:\users\ronys\documents\c++\pruebaproyecto\pruebaproyecto\reserva.h
+	<string>
+	"Vuelo.h"
+	"Pasajero.h"
+
+1686887542 source:c:\users\ronys\documents\c++\pruebaproyecto\pruebaproyecto\pasajero.cpp
+	"Pasajero.h"
+	<iostream>
+
+1686878190 source:c:\users\ronys\documents\c++\pruebaproyecto\pruebaproyecto\persona.cpp
+	"Persona.h"
+
+1686884658 source:c:\users\ronys\documents\c++\pruebaproyecto\pruebaproyecto\reserva.cpp
+	"Reserva.h"
+
+1686887542 source:c:\users\ronys\documents\c++\pruebaproyecto\pruebaproyecto\tripulacion.cpp
+	"Tripulacion.h"
+	<iostream>
+
+1686887542 c:\users\ronys\documents\c++\pruebaproyecto\pruebaproyecto\tripulacion.h
+	"Persona.h"
+
+1686887542 source:c:\users\ronys\documents\c++\pruebaproyecto\pruebaproyecto\vuelo.cpp
+	"Vuelo.h"
+
+1686945139 source:c:\users\ronys\documents\c++\pruebaproyecto\pruebaproyecto\buscadordevuelos.cpp
+	"BuscadorDeVuelos.h"
+
+1686945139 c:\users\ronys\documents\c++\pruebaproyecto\pruebaproyecto\buscadordevuelos.h
+	<vector>
+	<string>
+	"Vuelo.h"
+
+1686647813 c:\users\ronys\documents\c++\pruebaproyecto\pruebaproyecto\imprimible.h
+
+1686875501 source:c:\users\ronys\documents\c++\pruebaproyecto\pruebaproyecto\clienteempleado.cpp
+	"ClienteEmpleado.h"
+
+1686880262 c:\users\ronys\documents\c++\pruebaproyecto\pruebaproyecto\clienteempleado.h
+	"Empleado.h"
+	"cliente1.h"
+	<iostream>
+	<string>
+
+1686867327 c:\users\ronys\documents\c++\pruebaproyecto\pruebaproyecto\empleado.h
+	"Persona.h"
+
+1686675083 c:\users\ronys\documents\c++\pruebaproyecto\pruebaproyecto\cliente.h
+	"Persona.h"
+	<iostream>
+	<string>
+
+1686675135 source:c:\users\ronys\documents\c++\pruebaproyecto\pruebaproyecto\cliente.cpp
+	"Cliente.h"
+
+1686859244 c:\users\ronys\documents\c++\pruebaproyecto\pruebaproyecto\cliente1.h
+	"Persona.h"
+	<iostream>
+	<string>
+
+1686875501 source:c:\users\ronys\documents\c++\pruebaproyecto\pruebaproyecto\cliente1.cpp
+	"cliente1.h"
+
+1686867863 source:c:\users\ronys\documents\c++\pruebaproyecto\pruebaproyecto\empleado.cpp
+	"Empleado.h"
+
+1686934847 c:\users\ronys\documents\c++\pruebaproyecto\pruebaproyecto\equipaje.h
+	<string>
+	<iostream>
+
+1686943962 source:c:\users\ronys\documents\c++\pruebaproyecto\pruebaproyecto\equipaje.cpp
+	"Equipaje.h"
+
+1686946454 source:c:\users\ronys\documents\c++\pruebaproyecto\pruebaproyecto\registrodetripulacion.cpp
+	"RegistroDeTripulacion.h"
+
+1686946454 c:\users\ronys\documents\c++\pruebaproyecto\pruebaproyecto\registrodetripulacion.h
+	"Tripulacion.h"
+	"Aeropuerto.h"
+	"Tripulacion.h"
+	"Aeropuerto.h"
+	<vector>
+
+1686935287 source:c:\users\ronys\documents\c++\pruebaproyecto\pruebaproyecto\sistemacomentarios.cpp
+	"SistemaComentarios.h"
+
+1686935146 c:\users\ronys\documents\c++\pruebaproyecto\pruebaproyecto\sistemacomentarios.h
+	<string>
+	"Vuelo.h"
+	"Pasajero.h"
+	<iostream>
+	<vector>
+	<string>
+	"Vuelo.h"
+	"Pasajero.h"
+

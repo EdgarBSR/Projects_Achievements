@@ -1,0 +1,47 @@
+# depslib dependency file v1.0
+1670032107 source:c:\users\ronys\onedrive\documentos\universidad\pensamiento compu\reto2\opcion1.cpp
+	<iostream>
+	"opcion1.h"
+
+1670032107 c:\users\ronys\onedrive\documentos\universidad\pensamiento compu\reto2\opcion1.h
+
+1670035184 source:c:\users\ronys\onedrive\documentos\universidad\pensamiento compu\reto2\atributos.cpp
+	<iostream>
+	<string>
+	"atributos.h"
+
+1669965946 c:\users\ronys\onedrive\documentos\universidad\pensamiento compu\reto2\atributos.h
+	<iostream>
+	<string>
+	"precios.h"
+
+1669966058 c:\users\ronys\onedrive\documentos\universidad\pensamiento compu\reto2\precios.h
+
+1670032106 source:c:\users\ronys\onedrive\documentos\universidad\pensamiento compu\reto2\precios.cpp
+	<iostream>
+	"precios.h"
+
+1670024425 source:c:\users\ronys\onedrive\documentos\universidad\pensamiento compu\reto2\pantalon.cpp
+	<iostream>
+	<string>
+	"atributos.h"
+	"Pantalon.h"
+
+1669970847 c:\users\ronys\onedrive\documentos\universidad\pensamiento compu\reto2\pantalon.h
+	"atributos.h"
+
+1670024425 source:c:\users\ronys\onedrive\documentos\universidad\pensamiento compu\reto2\pants.cpp
+	<iostream>
+	<string>
+	"Pants.h"
+	"atributos.h"
+
+1669965034 c:\users\ronys\onedrive\documentos\universidad\pensamiento compu\reto2\pants.h
+	"atributos.h"
+
+1670035195 source:c:\users\ronys\onedrive\documentos\universidad\pensamiento compu\reto2\main.cpp
+	<iostream>
+	"Pants.h"
+	"Pantalon.h"
+	"opcion1.h"
+
