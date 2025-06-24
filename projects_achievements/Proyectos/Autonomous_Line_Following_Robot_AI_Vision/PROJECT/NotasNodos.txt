@@ -1,0 +1,168 @@
+## **NODO: line_follower_final.py**
+**QUÉ HACE:** Es el cerebro principal del robot. Se encarga del seguimiento de líneas usando visión por computadora y control PID. Maneja todas las decisiones de navegación y coordina con otros nodos.
+
+**RECIBE:**
+- `state_light` (de AI_light.py) - Estado del semáforo (green/red/yellow)
+- `state_signal` (de AI_signal.py) - Señales detectadas (Stop/GiveWay/Forward/Left/Right/Work)
+- `state_crossing` (de crossing.py) - Detección de cruces ("crossing")
+- `crossing_status` (de points_cross.py) - Estado del cruce (started/complete)
+- `/video_source/raw` - Imágenes de la cámara
+
+**ENVÍA:**
+- `/cmd_vel` - Comandos de velocidad al robot real
+- `/line_following` - Imagen procesada del seguimiento de línea
+
+**VARIABLES IMPORTANTES:**
+- `self.flag_crossing = True/False` - Bandera para pausar/reanudar seguimiento de línea
+- `self.base_linear_speed = 0.125` - Velocidad base (12.5 cm/s)
+- `self.Kp = 0.01, self.Ki = 0.0, self.Kd = 0.009` - Parámetros PID
+- `self.image_center_x` - Centro de la imagen (referencia para el error)
+- `self.signal_timer_active` - Bandera para temporizadores de señales
+- `self.previous_message` - Evita procesar la misma señal múltiples veces
+
+**CONEXIÓN:** Es el nodo central que toma decisiones basadas en toda la información visual e IA del sistema.
+
+---
+
+## **NODO: points_cross.py**
+**QUÉ HACE:** Especialista en navegación de cruces. Ejecuta maniobras específicas (avanzar, girar izquierda/derecha) con pausas controladas y precisión milimétrica.
+
+**RECIBE:**
+- `state_crossing` (de crossing.py) - Señal de que llegó a un cruce
+- `state_signal` (de AI_signal.py) - Dirección a tomar (Forward/Left/Right)
+- `movement_complete` (de odometry_cross.py) - Confirmación de movimiento lineal
+- `rotation_complete` (de odometry_cross.py) - Confirmación de rotación
+
+**ENVÍA:**
+- `move_distance` (a odometry_cross.py) - Comandos de distancia exacta
+- `rotate_angle` (a odometry_cross.py) - Comandos de ángulo exacto
+- `crossing_status` (a line_follower_final.py) - Estado del cruce (started/complete)
+
+**VARIABLES IMPORTANTES:**
+- `self.sequence_active = False` - Bandera principal que controla si está ejecutando maniobras
+- `self.sequence_state = 'idle'` - Estados: 'moving_forward', 'turning_left', 'turning_right', 'moving_final'
+- `self.crossing_direction = 'straight'` - Dirección del cruce: 'straight', 'left', 'right'
+- `self.waiting_for_pause = False` - Control de pausas entre movimientos
+- `self.forward_distance = 0.27` - 27 cm para entrar al cruce
+- `self.left_turn_angle = 72°, self.right_turn_angle = -72°` - Ángulos exactos de giro
+
+**CONEXIÓN:** Coordina con odometry_cross.py para movimientos precisos y con line_follower_final.py para pausar/reanudar navegación.
+
+---
+
+## **NODO: odometry_cross.py**
+**QUÉ HACE:** Control preciso de motores usando odometría. Ejecuta movimientos lineales y rotaciones con precisión submilimétrica. También maneja control de semáforos durante movimientos.
+
+**RECIBE:**
+- `VelocityEncR` - Velocidad del encoder derecho
+- `VelocityEncL` - Velocidad del encoder izquierdo  
+- `move_distance` (de points_cross.py) - Distancia a recorrer
+- `rotate_angle` (de points_cross.py) - Ángulo a rotar
+- `state_light` (de AI_light.py) - Estado del semáforo
+
+**ENVÍA:**
+- `/cmd_vel` - Comandos directos de velocidad al robot
+- `movement_complete` (a points_cross.py) - Confirmación de movimiento terminado
+- `rotation_complete` (a points_cross.py) - Confirmación de rotación terminada
+- `pose` - Posición actual del robot
+
+**VARIABLES IMPORTANTES:**
+- `self.is_moving = False, self.is_rotating = False` - Banderas de estado de movimiento
+- `self.x, self.y, self.theta` - Posición actual del robot (odometría)
+- `self.movement_speed = 0.125` - Velocidad de movimiento (se modifica con semáforos)
+- `self.distance_tolerance = 0.01` - Tolerancia de ±1 cm
+- `self.angle_tolerance = 0.02` - Tolerancia de ±1 grado
+- `self.current_traffic_light` - Estado persistente del semáforo
+- `self.flag_light` - Bandera para detectar cambios de semáforo
+
+**CONEXIÓN:** Recibe órdenes de alto nivel de points_cross.py y las convierte en comandos precisos de motor.
+
+---
+
+## **NODO: crossing.py**
+**QUÉ HACE:** Detecta cruces e intersecciones usando visión por computadora tradicional. Busca patrones rectangulares que indican intersecciones.
+
+**RECIBE:**
+- `/video_source/raw` - Imágenes de la cámara
+
+**ENVÍA:**
+- `state_crossing` - Señal "crossing" cuando detecta una intersección
+- `/crossing` - Imagen procesada con detecciones marcadas
+
+**VARIABLES IMPORTANTES:**
+- `self.image_received_flag = False` - Bandera de control de imágenes
+- `self.cont = 0` - Contador de rectángulos detectados (clave para detección)
+- `self.message = ''` - Estado actual: '' o 'crossing'
+- `roi_height = 30%` - Solo analiza el 30% inferior de la imagen
+- `area > 100 and area < 250` - Criterio de tamaño para rectángulos válidos
+- `len(approx) == 4` - Debe ser un rectángulo (4 esquinas)
+- `self.cont >= 3` - Si detecta 3+ rectángulos = cruce confirmado
+
+**CONEXIÓN:** Funciona independientemente, solo analiza imágenes y notifica cuando encuentra cruces a points_cross.py y line_follower_final.py.
+
+---
+
+## **NODO: AI_light.py**
+**QUÉ HACE:** Detecta semáforos usando inteligencia artificial (YOLO). Identifica si la luz está en verde, rojo o amarillo.
+
+**RECIBE:**
+- `/video_source/raw` - Imágenes de la cámara
+
+**ENVÍA:**
+- `state_light` - Estado del semáforo ("green", "red", "yellow")
+- `/AI_light` - Imagen con detecciones de semáforos marcadas
+
+**VARIABLES IMPORTANTES:**
+- `self.image_received_flag = False` - Control de procesamiento de imágenes
+- `self.message = ''` - Estado actual del semáforo detectado
+- `conf=0.25` - Confianza mínima del 25% (baja porque semáforos son difíciles)
+- `dt = 0.05` - Procesa cada 50ms (20 Hz)
+- `{0: 'green', 1: 'red', 2: 'yellow'}` - Mapeo de IDs del modelo IA
+- `self.model` - Modelo YOLO pre-entrenado (bestv03.pt)
+
+**CONEXIÓN:** Envía información de semáforos a line_follower_final.py y odometry_cross.py para control de velocidad.
+
+---
+
+## **NODO: AI_signal.py**
+**QUÉ HACE:** Detecta señales de tráfico usando inteligencia artificial (YOLO). Identifica 6 tipos: GiveWay, Stop, Forward, Left, Right, Work.
+
+**RECIBE:**
+- `/video_source/raw` - Imágenes de la cámara
+
+**ENVÍA:**
+- `state_signal` - Tipo de señal detectada (GiveWay/Stop/Forward/Left/Right/Work)
+- `/AI_signal` - Imagen con detecciones de señales marcadas
+
+**VARIABLES IMPORTANTES:**
+- `self.image_received_flag = False` - Control de imágenes nuevas
+- `self.message = ''` - Señal actualmente detectada
+- `conf=0.73` - Confianza alta del 73% (señales son más claras)
+- `dt = 0.01` - Procesa cada 10ms (100 Hz) - muy rápido
+- `{0: 'GiveWay', 1: 'Stop', 2: 'Forward', 3: 'Left', 4: 'Right', 5: 'Work'}` - Mapeo completo
+- `self.model` - Modelo YOLO especializado (best_1_signal.pt)
+
+**CONEXIÓN:** Envía información de señales a line_follower_final.py (para cambios de velocidad) y points_cross.py (para direcciones en cruces).
+
+---
+
+## **NODO: project.launch.py**
+**QUÉ HACE:** Archivo de lanzamiento que inicia los nodos principales del sistema (sin IA). Configuración para operación normal.
+
+**VARIABLES IMPORTANTES:**
+- `simulation = False` - Modo real (no simulación)
+- `emulate_tty = simulation` - Control de terminal
+- `use_sim_time = simulation` - Sincronización de tiempo
+
+**INICIA:** points_cross.py, odometry_cross.py, line_follower_final.py, crossing.py
+
+---
+
+## **NODO: ai.launch.py**
+**QUÉ HACE:** Archivo de lanzamiento que inicia solo los nodos de inteligencia artificial. Separado para optimizar recursos.
+
+**VARIABLES IMPORTANTES:**
+- `simulation = False` - Configuración idéntica al launch principal
+- Solo define los nodos de IA (light y signal)
+
+**INICIA:** AI_light.py, AI_signal.py
